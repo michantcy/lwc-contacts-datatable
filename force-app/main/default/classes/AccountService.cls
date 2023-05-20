@@ -1,13 +1,4 @@
 public with sharing class AccountService {
-    public Account createAccount( String accountName, String accountNumber, String tickerSymbol ) {
-      Account newAcct = new Account(
-        Name = accountName,
-        AccountNumber = accountNumber,
-        TickerSymbol = tickerSymbol
-      );
-      return newAcct;
-    }
-
     @AuraEnabled (cacheable=true)
     public static List<Account> fetchAccounts(){
       List<Account> accounts = new List<Account>();
@@ -80,8 +71,5 @@ public with sharing class AccountService {
             // Throw a custom exception with the error message
             throw new AuraHandledException('Failed to attach files to record: ' + ex.getMessage());
         }
-
-        // Log a message to indicate that the files were attached to the record
-        System.debug('Files attached to record: ' + recordId);
     }
   }
