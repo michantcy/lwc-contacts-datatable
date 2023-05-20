@@ -1,0 +1,24 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Contacts List" icon-name="standard:contact" class="cardSpinner">        
+        <div if:true={showSpinner}>
+            <lightning-spinner
+                alternative-text="Loading" variant="brand">
+            </lightning-spinner>
+        </div>
+        <div class="slds-var-p-around_small">
+            <template if:true={data}>
+                <c-custom-datatable-type
+                    key-field="Id"
+                    data={data} 
+                    columns={columns} 
+                    draft-values={draftValues} 
+                    oncellchange={handleCellChange}
+                    onuploadfinished={handleUploadFinished}
+                    onsave={handleSave}
+                    oncancel={handleCancel}
+                    hide-checkbox-column>
+                </c-custom-datatable-type>
+            </template>
+        </div>
+    </lightning-card>    
+</template>
