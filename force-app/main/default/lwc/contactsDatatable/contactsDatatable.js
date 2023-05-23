@@ -110,32 +110,7 @@ export default class ContactsDatatable extends LightningElement {
     }
 
     handleUploadFinished(event){        
-        // Get the list of uploaded files
-        const uploadedFiles = event.detail.uploadedFileIds;
-
-        // Initialize an array to store the IDs of the uploaded files
-        let uploadedFileIds = [];
-
-        // Loop through the uploaded files and get the ID of each file
-        uploadedFiles.forEach(uploadedFile => {
-            uploadedFileIds.push(uploadedFile);
-        });
-
-        let paramData = {
-        recordId: event.detail.recordId,
-        uploadedFileIds: uploadedFileIds
-        };
-
-        attachFilesToRecord({ paramData: paramData })
-        .then(result => {
-            // Show a success message
-            this.ShowToast('Success!', 'Files successfully uploaded', 'success', 'dismissable');
-
-        })
-        .catch(error => {
-            // Show an error message
-            this.ShowToast('Error!', error.message, 'error', 'dismissable');
-        });
+        this.refresh();
     }
  
     handleSave(event) {
